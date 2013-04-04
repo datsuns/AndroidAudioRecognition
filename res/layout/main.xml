@@ -10,6 +10,7 @@
             android:layout_gravity="left">
 
         <Button
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="basic"
@@ -17,6 +18,7 @@
                 android:layout_gravity="center"/>
 
         <Button
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="service"
@@ -24,10 +26,19 @@
                 android:layout_gravity="center"/>
 
         <Button
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="stop"
                 android:id="@+id/stop_service_button"
+                android:layout_gravity="center"/>
+
+        <Button
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clear"
+                android:id="@+id/clear_output_button"
                 android:layout_gravity="center"/>
     </LinearLayout>
 
@@ -36,6 +47,7 @@
             android:layout_height="fill_parent"
             android:text="output window"
             android:id="@+id/output"
+            android:editable="false"
             />
 </LinearLayout>
 

@@ -1,8 +1,10 @@
 package com.example.recognize;
 
-// TODO 端末がsleepに入るとそこで終わってしまう
-//      1) sleepをやめさせる
-//      2) sleep中も頑張れる？（onResume()とか）
+// 端末がsleepに入るとそこで終わってしまう
+//   1) sleepをやめさせる
+//       -> こっちのが簡単なのでこれで
+//   2) sleep中も頑張れる？（onResume()とか）
+//       -> むずい
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -54,6 +57,7 @@ public class MyActivity extends Activity {
         b.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 continue_recognition = Boolean.TRUE;
                 output.setText("");
                 startVoceRecognizeService();
@@ -64,8 +68,17 @@ public class MyActivity extends Activity {
         b.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 recognizer.stopListening();
                 continue_recognition = Boolean.FALSE;
+            }
+        });
+
+        b = (Button)findViewById(R.id.clear_output_button);
+        b.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                output.setText("");
             }
         });
 
